@@ -1,5 +1,5 @@
-name: Issue Comment Handler
-run-name: Issue creation by ${{github.actor}}
+name: Re-named Issue Comment Handler
+run-name: Issue Comment made by ${{github.actor}}
 on:
   issue_comment:
     types: [created, deleted]
@@ -8,7 +8,7 @@ jobs:
   handle_comment:
     runs-on: ubuntu-latest
     steps:
-      - name: Handle Comment
+      - name: Alert Action For Comment
         uses: actions/github-script@v6
         with:
           script: |
