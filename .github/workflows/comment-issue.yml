@@ -1,0 +1,16 @@
+name: Issue Comment Handler
+run-name: Issue creation by ${{github.actor}}
+on:
+  issue_comment:
+    types: [created, deleted]
+
+jobs:
+  handle_comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Handle Comment
+        uses: actions/github-script@v6
+        with:
+          script: |
+            console.log(context.payload.comment.body);
+            console.log(context.payload.comment.user.login);
