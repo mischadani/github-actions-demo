@@ -15,7 +15,6 @@ jobs:
         if: github.event.issue.pull_request != 'null'
         run: |
           echo "A comment has been made on a pull request!"
-
       - name: Exit if not a pull request comment
         if: github.event.issue.pull_request == 'null'
         run: |
