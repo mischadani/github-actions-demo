@@ -1,5 +1,5 @@
 name: Issue Comment Handler
-
+run-name: Issue creation by ${{github.actor}}
 on:
   issue_comment:
     types: [created, deleted]
