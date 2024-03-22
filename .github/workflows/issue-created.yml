@@ -1,8 +1,8 @@
-name: Issue Creation Action
+name: Issue Creation or Deletion Action
 
 on:
   issues:
-    types: [opened]
+    types: [opened, closed]
 
 jobs:
   handle_comment:
