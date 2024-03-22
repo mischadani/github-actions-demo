@@ -13,27 +13,11 @@ AnyChange:
 Documentation:
   - changed-files:
       - any-glob-to-any-file: 'docs/**/*'
-
-# Add 'Documentation' label to any file changes within 'docs' folder
-DocumentationDocsFolder:
-  - changed-files:
       - any-glob-to-any-file: 'docs/*'
-
-# Add 'Documentation' label to any file changes within 'docs' or 'guides' folders
-DocumentationGuidesFolders:
-  - changed-files:
       - any-glob-to-any-file:
           - 'docs/*'
           - 'guides/*'
-
-# Equivalent of the above mentioned configuration using another syntax
-DocumentationEquivalent:
-  - changed-files:
       - any-glob-to-any-file: ['docs/*', 'guides/*']
-
-# Add 'Documentation' label to any change to .md files within the entire repository
-DocumentationMD:
-  - changed-files:
       - any-glob-to-any-file: '**/*.md'
 
 # Add 'source' label to any change to src files within the source dir EXCEPT for the docs sub-folder
