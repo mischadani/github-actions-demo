@@ -1,5 +1,5 @@
 name: Re-named Issue Comment Handler
-run-name: Issue Comment made by ${{github.actor}} on ${{github.issue}}
+run-name: Issue Comment made by ${{github.actor}}
 on:
   issue_comment:
     types: [created, deleted]
