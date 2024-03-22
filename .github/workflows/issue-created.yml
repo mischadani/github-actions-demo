@@ -8,7 +8,7 @@ jobs:
   handle_comment:
     runs-on: ubuntu-latest
     steps:
-      - name: Alert Action For Comment
+      - name: Alert Action for opened or closed issue 
         uses: actions/github-script@v6
         with:
           script: |
