@@ -1,0 +1,16 @@
+name: Issue Creation Action
+run-name: Issue has been created by ${{github.actor}}
+on:
+  issue:
+    types: [created]
+
+jobs:
+  handle_comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Alert Action For Comment
+        uses: actions/github-script@v6
+        with:
+          script: |
+            console.log(context.payload.comment.body);
+            console.log(context.payload.comment.user.login);
