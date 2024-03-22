@@ -1,4 +1,4 @@
-name: Issue Comment Handler
+name: Re-named Issue Comment Handler 
 run-name: Issue creation by ${{github.actor}}
 on:
   issue_comment:
