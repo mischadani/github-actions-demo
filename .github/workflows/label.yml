@@ -1,28 +1,23 @@
-# This workflow will triage pull requests and apply a label based on the
-# paths that are modified in the pull request.
-#
-# To use this workflow, you will need to set up a .github/labeler.yml
-# file with configuration.  For more information, see:
-# https://github.com/actions/labeler
+# # This workflow will triage pull requests and apply a label based on the
+# # paths that are modified in the pull request.
+# #
+# # To use this workflow, you will need to set up a .github/labeler.yml
+# # file with configuration.  For more information, see:
+# # https://github.com/actions/labeler
 
-name: Labeler
-on:
-  # Trigger the workflow on push or pull request
-  pull_request:
-    branches:
-      - master
-      - develop
-
-jobs:
-  comment: This action is working
-  runs-on: ubuntu-latest
-    steps:
-      - uses: actions/github-script@v6
-        with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '👋 Thanks for reporting!'
-            })
+# name: Labeler
+# on: [pull_request]
+#   # Trigger the workflow on push or pull request
+# jobs:
+#   Pull Request Alert
+#   runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/github-script@v6
+#         with:
+#           script: |
+#             github.rest.issues.createComment({
+#               issue_number: context.issue.number,
+#               owner: context.repo.owner,
+#               repo: context.repo.repo,
+#               body: '👋 Thanks for reporting!'
+#             })
