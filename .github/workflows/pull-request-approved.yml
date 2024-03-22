@@ -1,0 +1,22 @@
+name: Pull Request Approved Alert
+
+on:
+  pull_request_review:
+    types: [submitted]
+    pull_request:
+      types: [submitted]
+      review:
+        submission_status: approved
+
+jobs:
+  handle_approval:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Alert Step Action for Pull Request Approval
+        uses: actions/github-script@v7
+        with:
+          script: |
+            console.log("Pull request approved!");
+            console.log("Pull Request Title:", context.payload.pull_request.title);
+            console.log("Pull Request Number:", context.payload.pull_request.number);
+            console.log("Approved By:", context.payload.review.user.login);

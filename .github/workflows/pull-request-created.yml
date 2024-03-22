@@ -1,0 +1,18 @@
+name: Pull Request Created Alert
+run-name: ${{github.actor}} initiated a pull request
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  handle_comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Alert Step Action for Pull Request
+        uses: actions/github-script@v7
+        with:
+          script: |
+            console.log("Pull request created!");
+            console.log("Pull Request Title:", context.payload.pull_request.title);
+            console.log("Pull Request Number:", context.payload.pull_request.number);
+            console.log("Opened By:", context.payload.pull_request.user.login);

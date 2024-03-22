@@ -1,0 +1,16 @@
+name: Issue Deletion Action
+run-name: ${{ github.actor }} has now closed an issue
+on:
+  issues:
+    types: [closed]
+
+jobs:
+  handle_comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Alert Action for closed issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            console.log(context.payload.issue.body);
+            console.log(context.payload.issue.user.login);
