@@ -1,4 +1,5 @@
 name: Pull Request Merged Alert
+run-name: ${{ github.actor }} approved a merge
 
 on:
   pull_request:
