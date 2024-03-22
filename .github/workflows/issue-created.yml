@@ -1,6 +1,5 @@
 name: Issue Creation or Deletion Action
-run-name: ${{ github.actor }} created or deleted an issue
-
+run-name: ${{ github.actor }} opened or closed an issue
 on:
   issues:
     types: [opened, closed]
