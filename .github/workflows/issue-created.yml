@@ -2,7 +2,7 @@ name: Issue Creation Action
 
 on:
   issues:
-    types: [created]
+    types: [opened]
 
 jobs:
   handle_comment:
