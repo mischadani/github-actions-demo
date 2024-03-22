@@ -1,5 +1,5 @@
 name: Issue Deletion Action
-run-name: ${{ github.actor }} closed an issue
+run-name: ${{ github.actor }} has now closed an issue
 on:
   issues:
     types: [closed]
