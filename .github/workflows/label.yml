@@ -6,17 +6,23 @@
 # https://github.com/actions/labeler
 
 name: Labeler
-on: [pull_request_target]
+on:
+  # Trigger the workflow on push or pull request
+  pull_request:
+    branches:
+      - master
+      - develop
 
 jobs:
-  label:
-
+  comment: This action is working 
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
-
     steps:
-    - uses: actions/labeler@v4
-      with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '👋 Thanks for reporting!'
+            })
