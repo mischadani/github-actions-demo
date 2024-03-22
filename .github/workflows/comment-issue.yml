@@ -2,7 +2,7 @@ name: Test Issue Comment Handler
 run-name: Issue Comment made by ${{github.actor}}
 on:
   issue_comment:
-    types: [created, deleted]
+    types: [created, edited, deleted]
 
 jobs:
   handle_comment:
