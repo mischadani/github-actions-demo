@@ -14,8 +14,8 @@ on:
       - develop
 
 jobs:
-  comment: This action is working 
-    runs-on: ubuntu-latest
+  comment: This action is working
+  runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v6
         with:
