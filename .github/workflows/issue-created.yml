@@ -1,4 +1,5 @@
 name: Issue Creation or Deletion Action
+run-name: ${{ github.actor }} created or deleted an issue
 
 on:
   issues:
