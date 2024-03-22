@@ -1,0 +1,33 @@
+name: Check README Update
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'  # Run every 10 minutes
+
+jobs:
+  check_update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch README Content
+        id: fetch_readme
+        run: |
+          readme_content=$(curl -s -H "Accept: application/vnd.github.v3+json" https://raw.githubusercontent.com/${{ github.repository }}/main/README.md)
+          echo "::set-output name=readme_content::$readme_content"
+
+      - name: Extract Last Updated Time
+        id: extract_time
+        run: |
+          last_updated=$(echo "${{ steps.fetch_readme.outputs.readme_content }}" | grep -oP '^Last updated: \K.*')
+          echo "::set-output name=last_updated::$last_updated"
+
+      - name: Calculate Time Difference
+        id: calculate_time
+        run: |
+          last_updated=$(date -d "${{ steps.extract_time.outputs.last_updated }}" +%s)
+          current_time=$(date +%s)
+          difference=$((current_time - last_updated))
+          echo "::set-output name=difference::$difference"
+
+      - name: Trigger Alert if Not Updated
+        if: ${{ steps.calculate_time.outputs.difference }} > 600  # 10 minutes = 600 seconds
+        run: echo "The README file has not been updated in the last 10 minutes!"
