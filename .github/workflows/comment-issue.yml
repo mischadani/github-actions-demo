@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Alert Action For Issue Comment
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: |
             console.log(context.payload.comment.body);
