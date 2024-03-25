@@ -1,6 +1,5 @@
 name: Pull Request Merged Alert
-run-name: ${{ github.actor }} approved a merge
-
+run-name: A merge request was approved by ${{ github.actor }}
 on:
   pull_request:
     types: [closed]
