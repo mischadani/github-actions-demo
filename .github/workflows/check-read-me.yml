@@ -1,11 +1,12 @@
-name: Check for README Update
-
+name: Show Last README Update Time
+run-name: Checking for readme on push
 on:
-  schedule:
-    - cron: '*/10 * * * *'  # Run every 10 minutes
+  push:
+    branches:
+      - main
 
 jobs:
-  check_update:
+  show_last_update_time:
     runs-on: ubuntu-latest
     steps:
       - name: Fetch README Content
@@ -20,14 +21,6 @@ jobs:
           last_updated=$(echo "${{ steps.fetch_readme.outputs.readme_content }}" | grep -oP '^Last updated: \K.*')
           echo "::set-output name=last_updated::$last_updated"
 
-      - name: Calculate Time Difference
-        id: calculate_time
+      - name: Show Last Update Time
         run: |
-          last_updated=$(date -d "${{ steps.extract_time.outputs.last_updated }}" +%s)
-          current_time=$(date +%s)
-          difference=$((current_time - last_updated))
-          echo "::set-output name=difference::$difference"
-
-      - name: Trigger Alert if Not Updated
-        if: ${{ steps.calculate_time.outputs.difference }} > 600  # 10 minutes = 600 seconds
-        run: echo "The README file has not been updated in the last 10 minutes!"
+          echo "Last README update time: ${{ steps.extract_time.outputs.last_updated }}"
