@@ -1,9 +1,8 @@
 name: Check README Update on main
 run-name: README was updated by ${{ github.actor }}
 on:
-  push:
-    branches:
-      - main
+  schedule:
+      - cron: '*/10 * * * *' # Triggered every 10 minutes
 
 jobs:
   check_readme_update:
