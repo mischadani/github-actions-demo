@@ -1,5 +1,5 @@
-name: Issue Creation Action
-run-name: ${{ github.actor }} opened an issue
+name: Issue Opened Action
+run-name: An issue was opened by ${{ github.actor }}
 on:
   issues:
     types: [opened]
