@@ -1,4 +1,4 @@
-name: Check README Update
+name: Check for README Update
 
 on:
   schedule:
