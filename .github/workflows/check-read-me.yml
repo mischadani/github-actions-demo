@@ -1,5 +1,5 @@
 name: Check README Update on main
-
+run-name: README was updated by ${{ github.actor }}
 on:
   push:
     branches:
