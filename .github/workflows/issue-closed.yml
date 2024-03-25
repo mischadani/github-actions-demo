@@ -1,14 +1,14 @@
-name: Issue Creation Action
-run-name: ${{ github.actor }} opened an issue
+name: Issue Closed Action
+run-name: An issue was closed by ${{ github.actor }} 
 on:
   issues:
-    types: [opened]
+    types: [closed]
 
 jobs:
   handle_comment:
     runs-on: ubuntu-latest
     steps:
-      - name: Alert Action for opened or closed issue
+      - name: Alert Action for closed issue
         uses: actions/github-script@v7
         with:
           script: |

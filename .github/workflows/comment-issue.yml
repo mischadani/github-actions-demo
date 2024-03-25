@@ -1,5 +1,5 @@
-name: Test Issue Comment Handler
-run-name: Issue Comment made by ${{github.actor}}
+name: Issue Comment Action
+run-name: An issue comment was made by ${{github.actor}}
 on:
   issue_comment:
     types: [created, edited, deleted]

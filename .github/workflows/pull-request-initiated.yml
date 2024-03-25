@@ -1,5 +1,5 @@
 name: Pull Request Created Alert
-run-name: ${{github.actor}} initiated a pull request
+run-name: Pull request initiated by ${{github.actor}} 
 on:
   pull_request:
     types: [opened]
