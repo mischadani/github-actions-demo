@@ -1,0 +1,21 @@
+name: Notify Owner on README Update
+
+on:
+  repository_dispatch:
+    types: [readme_updated]
+
+jobs:
+  send_notification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Notification
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.repos.createCommitComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              commit_sha: context.sha,
+              body: 'The README file has been updated.'
+            })
