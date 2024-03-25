@@ -3,7 +3,7 @@ run-name: Checking for readme on push
 on:
   push:
     branches:
-      - 1149-am-test-branch
+      - main
 
 jobs:
   show_last_update_time:
