@@ -1,26 +1,32 @@
-name: Show Last README Update Time
-run-name: Checking for readme on push
+name: Check README Update on main
+
 on:
   push:
     branches:
       - main
 
 jobs:
-  show_last_update_time:
+  check_readme_update:
     runs-on: ubuntu-latest
     steps:
-      - name: Fetch README Content
-        id: fetch_readme
+      - name: Fetch Previous README Content
+        id: fetch_prev_readme
         run: |
-          readme_content=$(curl -s -H "Accept: application/vnd.github.v3+json" https://raw.githubusercontent.com/${{ github.repository }}/main/README.md)
-          echo "::set-output name=readme_content::$readme_content"
+          prev_readme_content=$(curl -sSL "https://raw.githubusercontent.com/${{ github.repository }}/main/README.md")
+          echo "::set-output name=prev_readme_content::$prev_readme_content"
 
-      - name: Extract Last Updated Time
-        id: extract_time
+      - name: Fetch Current README Content
+        id: fetch_curr_readme
         run: |
-          last_updated=$(echo "${{ steps.fetch_readme.outputs.readme_content }}" | grep -oP '^Last updated: \K.*')
-          echo "::set-output name=last_updated::$last_updated"
+          curr_readme_content=$(curl -sSL "https://raw.githubusercontent.com/${{ github.repository }}/main/README.md")
+          echo "::set-output name=curr_readme_content::$curr_readme_content"
 
-      - name: Show Last Update Time
+      - name: Compare READMEs
+        id: compare_readmes
         run: |
-          echo "Last README update time: ${{ steps.extract_time.outputs.last_updated }}"
+          diff -u <(echo "${{ steps.fetch_prev_readme.outputs.prev_readme_content }}") <(echo "${{ steps.fetch_curr_readme.outputs.curr_readme_content }}") || true
+          echo "::set-output name=readme_updated::${PIPESTATUS[0]}"
+
+      - name: Notify if README Updated
+        if: steps.compare_readmes.outputs.readme_updated != 0
+        run: echo "README file was updated on test-branch-1!"
